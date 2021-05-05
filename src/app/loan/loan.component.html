@@ -1,0 +1,176 @@
+<div class="container col-12">
+    <h2>Banking Application</h2>
+    <div class="row">
+        <nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+            <ul class="nav navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/loan">Apply Loan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/update">Update Details</a>
+                </li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item ">
+                        <a class="nav-link" (click)="logout()" href="#">Logout</a>
+                    </li>
+                </ul>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <h3 style="text-align: center">Welcome customer with ID {{ cid }}</h3>
+            <form [formGroup]="loanDetails" >
+                <div class="form-group" Style="margin-top: 20px ; margin-bottom: 20px">
+                    <label for="loanType">Loan Type</label>
+                    <select id="loanType" formControlName="loanType"class="form-control dropdown-toggle" (change)="onChange($event)">
+                        <option value="">Select Loan Type</option>
+                        <option value="education">Education Loan</option>
+                        <option value="personal">Personal Loan</option>
+                    </select>
+                    <div *ngIf="f.loanType.touched && f.loanType.invalid" class="alert alert-danger">
+                        <div *ngIf="f.loanType.errors.required">LoanType is required.</div>
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label for="loanAmount">Loan Amount</label>
+                    <input type="number" id="loanAmount" class="form-control" formControlName="loanAmount">
+                    <div *ngIf="f.loanAmount.touched && f.loanAmount.invalid" class="alert alert-danger">
+                        <div *ngIf="f.loanAmount.errors.required">Loan Amount is required.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="loanApDate">Loan Apply Date</label>
+                    <input type="date" id="loanApDate" min="{{date | date:'yyyy-MM-dd'}}" formControlName="loanApDate" class="form-control" >
+                    <div *ngIf="f.loanApDate.touched && f.loanApDate.invalid" class="alert alert-danger">
+                        <div *ngIf="f.loanApDate.errors.required">Loan Apply Date is required.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="loanISDate">Loan Issue Date</label>
+                    <input type="date" id="loanISDate" min="{{date | date:'yyyy-MM-dd'}}" formControlName="loanISDate" class="form-control" >
+                    <div *ngIf="f.loanISDate.touched && f.loanISDate.invalid" class="alert alert-danger">
+                        <div *ngIf="f.loanISDate.errors.required">Loan issue Date is required.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="roInterest">Rate Of Interest</label>
+                    <input type="number" id="roInterest" class="form-control" formControlName="roInterest">
+                    <div *ngIf="f.roInterest.touched && f.roInterest.invalid" class="alert alert-danger">
+                        <div *ngIf="f.roInterest.errors.required">Return of Interest is required.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="duration">Duration of Loan in Years</label>
+                    <select id="duration" class="form-control" formControlName="duration">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                    <div *ngIf="f.duration.touched && f.duration.invalid" class="alert alert-danger">
+                        <div *ngIf="f.duration.errors.required">Duration of Years is required.</div>
+                    </div>
+                </div>
+
+                <div class="cols-md-12 no-padding" *ngIf="selectedType == 'education'">
+                    <h3 style ="text-align: center;">Education Loan</h3>
+                    <div class="form-group">
+                        <label for="coursefee">Course Fee</label>
+                        <input type="number" formControlName="coursefee" class="form-control" id="coursefee" placeholder="Enter Course fee">
+                        <!--<div *ngIf="(coursefee.dirty || coursefee.touched)"
+                            class="alert alert-danger">
+                        <div *ngIf="coursefee.errors.required">
+                            Name is required.
+                        </div>
+                        </div>-->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course">Course Name</label>
+                        <input type="text" formControlName="course" class="form-control" id="course" placeholder="Enter Course Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fName">Father Name</label>
+                        <input type="text" formControlName="fName" class="form-control" id="fName" placeholder="Enter Father Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="foccupation">Father occupation</label>
+                        <input type="text" formControlName="foccupation" class="form-control" id="foccupation" placeholder="Enter Father occuaption">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Fxperience">Father Experience</label>
+                        <input type="number" formControlName="Fxperience" class="form-control" id="Fxperience" placeholder="Enter Father Total Experience">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Fcxperience">Father Experience in current company</label>
+                        <input type="number" formControlName="Fcxperience" class="form-control" id="Fcxperience" placeholder="Enter Father Total Experience in current company">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rationNo">Ration Number</label>
+                        <input type="number" formControlName="rationNo" class="form-control" id="rationNo" placeholder="Enter Ration Number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="annualIncome">Annual Income</label>
+                        <input type="number" formControlName="aIncome" class="form-control" id="aIncome" placeholder="Enter Annual Income">
+                    </div>
+                    
+                    <!--<span class="text-danger" *ngIf="form.controls['coursefee'].touched && form.controls['coursefee'].hasError('required')">
+                        Application Name is required! </span>-->
+                </div> 
+
+                <div class="cols-md-12 no-padding" *ngIf="selectedType == 'personal'">
+                    <h3 style ="text-align: center;">Personal Loan</h3>
+
+                    <div class="form-group">
+                        <label for="annualIncome">Annual Income</label>
+                        <input type="number" formControlName="paIncome" class="form-control" id="paIncome" placeholder="Enter Annual Income">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cName">Company Name</label>
+                        <input type="text" formControlName="cName" class="form-control" id="cName" placeholder="Enter Company Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="designation">Designation</label>
+                        <input type="text" formControlName="designation" class="form-control" id="designation" placeholder="Enter Designation">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Total Experience</label>
+                        <input type="number" formControlName="experience" class="form-control" id="experience" placeholder="Enter Total Experience">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cexperience">Experience in current company</label>
+                        <input type="number" formControlName="cexperience" class="form-control" id="cexperience" placeholder="Enter Total Experience in current company">
+                    </div>
+                </div>
+                <div class="from-group">
+                    <buttton type="submit" (click)="onSubmit()"class="btn btn-block btn-login btn-success" style="margin-bottom:20px" value="Apply Loan" routerLink="/loan">Apply Loan</buttton>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

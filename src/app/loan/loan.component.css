@@ -1,0 +1,12 @@
+.container-fluid{
+    
+    background-color:#5286F3;
+}
+.container h2{
+    text-align: center ;
+}
+.container{
+    background-color: #fdfdfd;
+    padding-left: 0;
+    padding-right: 0;
+}

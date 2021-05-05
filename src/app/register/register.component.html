@@ -1,0 +1,222 @@
+<div class="container col-12">
+    <h2>Banking Application</h2>
+    <div class="row">
+        <nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+            <ul class="nav navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <form [formGroup]="personalDetails" (ngSubmit)="submit()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" formControlName="name" class="form-control"
+                        placeholder="Enter your Name">
+                    
+                    <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                        <div *ngIf="f.name.errors.required">Name is required.</div>
+                        <div *ngIf="f.name.errors.pattern">Name should contain only alphabets and space</div>
+                    </div>             
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" 
+                           formControlName="username" 
+                           id="username" class="form-control" 
+                           placeholder="Enter your username">
+                    <div *ngIf="f.username.touched && f.username.invalid" class="alert alert-danger">
+                        <div *ngIf="f.username.errors.required">User Name is required.</div>
+                        <div *ngIf="f.username.errors.minlength">UserName should be 4 character.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" 
+                           formControlName="password" 
+                           id="password" 
+                           class="form-control" 
+                           placeholder="Enter password">
+                    <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+                        <div *ngIf="f.password.errors.required">Password is required.</div>
+                        <div *ngIf="f.password.errors.minlength">Password should be 6 character.</div>
+                    </div>               
+                </div>
+
+                <div class="form-group">
+                    <label for="guardianType">GuardianType</label>
+                    <select formControlName="guardianType" id="guardianType" class="form-control dropdown-toggle">
+                        <option value="father">Father</option>
+                        <option value="mother">Mother</option>
+                    </select>
+                    <div *ngIf="f.guardianType.touched && f.guardianType.invalid" class="alert alert-danger">
+                        <div *ngIf="f.guardianType.errors.required">Guardian type is required.</div>
+                    </div>            
+                </div>
+
+                <div class="form-group">
+                    <label for="guardianName">GuardianName</label>
+                    <input type="text" 
+                           formControlName="guardianName" 
+                           id="guardianName" class="form-control">   
+                    <div *ngIf="f.guardianName.touched && f.guardianName.invalid" class="alert alert-danger">
+                        <div *ngIf="f.guardianName.errors.required">Guardian Name is required.</div>
+                        <div *ngIf="f.guardianName.errors.minlength">Guardian name should be 3 character.</div>
+                    </div>
+                           
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea formControlName="address" id="address" class="form-control"></textarea> 
+                    <div *ngIf="f.address.touched && f.address.invalid" class="alert alert-danger">
+                        <div *ngIf="f.address.errors.required">Address is required.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="citizenShip">Citizenship</label>
+                    <input type="text" 
+                           formControlName="citizenShip" 
+                           id="citizenShip" class="form-control">
+                    <div *ngIf="f.citizenShip.touched && f.citizenShip.invalid" class="alert alert-danger">
+                        <div *ngIf="f.citizenShip.errors.required">Citizenship is required.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select formControlName="country" [(ngModel)]="selectedCountry.id" (change)="onSelect($event.target.value)" id="country" class="form-control">
+                        <option value="0">--Select--</option>
+                        <option *ngFor="let country of countries" value={{country.id}}>{{country.name}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <select id="state" formControlName="state" class="form-control">
+                        <option value="0">--select--</option>
+                        <option *ngFor="let state of states" value={{state.id}}>{{state.name}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">email</label>
+                    <input type="text" 
+                           formControlName="email" 
+                           id="email" class="form-control" 
+                           placeholder="Enter your email address">
+                    <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                        <div *ngIf="f.email.errors.required">Email is required.</div>
+                        <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+                    </div>
+              
+                </div>
+
+                <div class="form-group ">
+                    <label for="gender">Gender</label>
+                       <label class="radio-inline"> <input type="radio" formControlName="gender" name="gender" value="male">male</label>
+                       <label class="radio-inline"> <input type="radio" formControlName="gender" name="gender" value="female">female</label>                     
+                </div>
+
+                <div class="form-group">
+                    <label for="maritalStatus">Marital Status</label>
+                    <select formControlName="maritalStatus" id="maritalStatus" class="form-control dropdown-toggle">
+                        <option value="single">single</option>
+                        <option value="Married">Married</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact">Contact</label>
+                    <input type="number" 
+                           formControlName="contact" 
+                           id="contact" class="form-control">
+                    <div *ngIf="f.contact.touched && f.contact.invalid" class="alert alert-danger">
+                        <div *ngIf="f.contact.errors.required">Contact is required.</div>
+                        <div *ngIf="f.contact.errors.pattern">Please, enter correct 10 digit number.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" formControlName="dob" max="{{date | date:'yyyy-MM-dd'}}" (change)="calculateAge($event.target.value)" id="dob" class="form-control">
+                    <div *ngIf="f.dob.touched && f.dob.invalid" class="alert alert-danger">
+                    <div *ngIf="f.dob.errors.required">Date of birth is required.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerdate">Registration Date</label>
+                    <input type="date" formControlName="registerdate" id="registerdate" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="accounttype">AccountType</label>
+                    <select formControlName="accounttype" id="accounttype" class="form-control" formControlValue="accountType">
+                        <option value="savings">savings</option>
+                        <option value="salary">salary</option>
+                    </select>
+
+
+                </div>
+
+                <div class="form-group">
+                    <label for="branchname">BranchName</label>
+                    <input type="text" formControlName="branchname" 
+                           id="branchname" class="form-control">
+                    <div *ngIf="f.branchname.touched && f.branchname.invalid" class="alert alert-danger">
+                        <div *ngIf="f.branchname.errors.required">Branch is required.</div>
+                    </div>            
+                </div>
+
+                <div class="form-group">
+                    <label for="citizenstatus">citizenStatus</label>
+                    <input type="text" formControlName="citizenStatus" id="citizenstatus" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="initialDep">Initial Deposit</label>
+                    <input type="number" formControlName="initialDep" 
+                           id="initialDep" class="form-control">
+                    <div *ngIf="f.initialDep.touched && f.initialDep.invalid" class="alert alert-danger">
+                        <div *ngIf="f.initialDep.errors.required">Deposit is required.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="idProof">Identification Proof</label>
+                    <select id="idProof" formControlName="idProof" class="form-control">
+                        <option value="pancard">Pan Card</option>
+                        <option value="aadhar">Aadhar Card</option>
+                        <option value="drivinglicense">Driving License</option>
+                    </select>
+                    <div *ngIf="f.idProof.touched && f.idProof.invalid" class="alert alert-danger">
+                        <div *ngIf="f.idProof.errors.required">Identification Proof is required.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="idNumber">Identification Number</label>
+                    <input type="text" formControlName="idNumber" id="idNumber" class="form-control">
+                    <div *ngIf="f.idNumber.touched && f.idNumber.invalid" class="alert alert-danger">
+                        <div *ngIf="f.idNumber.errors.required">Identification number is required.</div>
+                        <div *ngIf="f.idNumber.errors.pattern">Please Valid Number</div>
+                    </div>
+                </div>
+
+                <button class="btn btn-success"  type="submit"  [disabled]="personalDetails.invalid">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
