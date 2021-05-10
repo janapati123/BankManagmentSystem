@@ -4,8 +4,8 @@ import { Country } from './country';
 import { State } from './state';
 import { SelectService } from '../register/select.service';
 import { Router } from '@angular/router';
-import { CommonService } from '../common.service';
-import { AuthService } from '../auth.service';
+import { CommonService } from '../services/common.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-update',
@@ -38,7 +38,7 @@ export class UpdateComponent implements OnInit {
     this.onSelect(this.selectedCountry.id);
 
     this.updateDetails = this.fb.group({
-      name : ["",[Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+      name : ['',[Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
       username : ['',[Validators.required, Validators.minLength(4)]],
       password : ['',[Validators.required, Validators.minLength(6)]],
       guardianType : ['',Validators.required],

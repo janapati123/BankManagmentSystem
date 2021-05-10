@@ -24,31 +24,7 @@
       "idNumber": "ABCD123456",
       "cid": "R-836",
       "id": 1
-    },
-    {
-      "name": "Gayathri",
-      "username": "Gayathri",
-      "password": "gayathri",
-      "guardianType": "mother",
-      "guardianName": "Manjula",
-      "address": "Kadapa",
-      "citizenShip": "Indian",
-      "country": 3,
-      "state": "10",
-      "email": "abc@c",
-      "gender": "male",
-      "maritalStatus": "Married",
-      "contact": 1234567890,
-      "dob": "2021-05-01",
-      "registerdate": "2021-05-05",
-      "accounttype": "savings",
-      "branchname": "SBI",
-      "citizenStatus": "Major",
-      "initialDep": 3000,
-      "idProof": "pancard",
-      "idNumber": "ABCD123456",
-      "cid": "R-739",
-      "id": 2
     }
+
   ]
 }

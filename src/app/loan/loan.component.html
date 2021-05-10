@@ -32,7 +32,7 @@
             <form [formGroup]="loanDetails" >
                 <div class="form-group" Style="margin-top: 20px ; margin-bottom: 20px">
                     <label for="loanType">Loan Type</label>
-                    <select id="loanType" formControlName="loanType"class="form-control dropdown-toggle" (change)="onChange($event)">
+                    <select id="loanType" formControlName="loanType"class="form-control dropdown-toggle" [(ngModel)]="selectedType">
                         <option value="">Select Loan Type</option>
                         <option value="education">Education Loan</option>
                         <option value="personal">Personal Loan</option>

@@ -30,7 +30,7 @@
             <form [formGroup]="updateDetails" (ngSubmit)="submit()">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" [(ngModel)]="printDetails.name" formControlName="name" class="form-control"
+                    <input type="text" id="name" name="name" formControlName="name" [(ngModel)]="printDetails.name"  class="form-control"
                         placeholder="Enter your Name">
                     
                     <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">

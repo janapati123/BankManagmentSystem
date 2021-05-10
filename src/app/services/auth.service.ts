@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from './common.service';
-import { User } from './user';
+import { User } from '../user';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +20,10 @@ export class AuthService {
       this.registerusers = result;
     
       for(let ruser of this.registerusers){
-        console.log(ruser.username == userInfo['username'] && ruser.password == userInfo['password']);
+        //console.log(ruser.username == userInfo['username'] && ruser.password == userInfo['password']);
         if( ruser.username == userInfo['username'] && ruser.password == userInfo['password']){
           localStorage.setItem('ACCESS_TOKEN', ruser.username);
           localStorage.setItem('CID', ruser.cid);
-
-         // localStorage.setItem('ACCESS_TOKEN', "access_token");
           this.router.navigateByUrl('/loan');
           this.invalid();
         }   
@@ -50,14 +48,7 @@ export class AuthService {
     this.commonService.createUser(user1).subscribe((response)=>{
       console.log("User Has been added");     
     })
-
-    this.object1=user1;
-    console.log(this.object1)
   }
 
-  public cust(cid){
-    this.cid1=cid;
-    console.log(this.cid1)
-  }
   
 }

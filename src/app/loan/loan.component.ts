@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-loan',
@@ -46,12 +46,12 @@ export class LoanComponent implements OnInit {
     return this.loanDetails.controls;
   }
 
-  onChange(event) {
-    this.selectedType = event.target.value;
-  }
+  // onChange(event) {
+  //   this.selectedType = event.target.value;
+  // }
 
   onSubmit(){
-    console.log(this.loanDetails.value);
+    //console.log(this.loanDetails.value);
     alert("Your Loan Applied Succesfully");
   }
 

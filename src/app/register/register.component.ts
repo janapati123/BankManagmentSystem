@@ -3,8 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { CommonService } from '../common.service';
+import { AuthService } from '../services/auth.service';
+import { CommonService } from '../services/common.service';
 import { Country } from './country';
 import { SelectService } from './select.service';
 import { State } from './state';
@@ -38,10 +38,10 @@ export class RegisterComponent implements OnInit {
     this.states = this.selectService.getStates().filter((item) => item.countryid == countryid);
   }
 
-  constructor(private authService: AuthService,private fb: FormBuilder,
+  constructor(private authService: AuthService,private formBuilder: FormBuilder,
     private selectService: SelectService,private router: Router,private commonService:CommonService) { }
 
-  personalDetails = this.fb.group({
+  personalDetails = this.formBuilder.group({
     name : ['', [Validators.required,
                  Validators.pattern('^[a-zA-Z ]+$')]],
     username : ['', [Validators.required,
@@ -71,14 +71,6 @@ export class RegisterComponent implements OnInit {
     return this.personalDetails.controls;
   }
 
-  //addUser(formObj){
-     // console.log(formObj)
-     // this.commonService.createUser(formObj).subscribe((response)=>{
-        //console.log("User Has been added");
-        //this.getLatestUser();
-     // })
-  //}
-
   calculateAge(dob)
   {
     var date1 = new Date(dob);
@@ -102,22 +94,14 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  
-
-
-
   submit(){
     
-   // this.addUser(this.personalDetails.value);
-    
-    
     console.log(this.personalDetails.value);
-    this.cid='R-'+Math.floor(Math.random()*(999-100+1)+100);
+   
     this.isSubmitted = true;
     if(this.personalDetails.invalid){
       return;
     }
-    this.authService.cust(this.cid);
     this.authService.adduser(this.personalDetails.value);
     this.router.navigateByUrl('/login');
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,18 +13,16 @@ export class LoginComponent implements OnInit {
   isSubmitted  =  false;
   invalidCredentials =false;
 
-  constructor(private fb: FormBuilder,private authService: AuthService,private router: Router) {  }
+  constructor(public formBuilder: FormBuilder,private authService: AuthService,public router: Router) {  }
 
-  loginForm = this.fb.group({
+  loginForm = this.formBuilder.group({
         username : ['',Validators.required],
         password : ['',Validators.required]
   })
 
   ngOnInit(): void {
   }
-  goToRegister(){
-    this.__router.navigateByUrl("/register");
-  }
+
   get formControls() { 
     return this.loginForm.controls; 
   }
@@ -33,6 +31,10 @@ export class LoginComponent implements OnInit {
     var check =  this.authService.invalid();
     if(check)
     this.invalidCredentials = true;
+  }
+
+  goToRegister(){
+    this.router.navigateByUrl("/register");
   }
 
 

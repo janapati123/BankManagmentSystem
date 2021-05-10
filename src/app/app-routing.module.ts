@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UpdateComponent } from './update/update.component';
 import { LoanComponent } from './loan/loan.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
     {path: '', component: LoginComponent},
