@@ -102,7 +102,10 @@ export class RegisterComponent implements OnInit {
     if(this.personalDetails.invalid){
       return;
     }
-    this.authService.adduser(this.personalDetails.value);
+    this.commonService.createUser(this.personalDetails.value).subscribe((response)=>{
+      // console.log("User Has been added");     
+    })
+    //this.authService.adduser(this.personalDetails.value);
     this.router.navigateByUrl('/login');
   }
   

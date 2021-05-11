@@ -56,30 +56,20 @@ describe('LoginComponent', () => {
       expect(spy).not.toHaveBeenCalledWith('/loan'); 
     });
 
-    // it('should  go to loan page',()=>{
-    //   let router = TestBed.inject(Router);
-    //   let spy = spyOn(router, 'navigateByUrl');
-    
-    //   component.login();
-    //   fixture.detectChanges();
-    
-    //   expect(spy).toHaveBeenCalledWith('/loan'); 
-    // });
+    it('should  go to loan page',()=>{
+      let auth = TestBed.inject(AuthService);
+     let spy = spyOn(auth, 'login');
 
-    // it('should  go to loan page',()=>{
-    //   let auth = TestBed.inject(AuthService);
-    //   spyOn(auth, 'login');
+       component.loginForm.controls.username.setValue("Mani");
+      component.loginForm.controls.password.setValue("Manikanta");
     
-    //   component.login();
-    //   let value = component.checkInvalidCredentials();
-    //   fixture.detectChanges();
-
-    //   component.loginForm.controls.username.setValue("Mani");
-    //   component.loginForm.controls.password.setValue("Manikanta");
+      component.login();
+      let value = component.checkInvalidCredentials();
+      fixture.detectChanges();
+        
+      expect(spy).toHaveBeenCalled();
       
-    //  // expect(value).toHaveBeenCalled();
-    //   expect(auth.login({username:"Manikanta",password:"Manikanta"})).toHaveBeenCalled();
-    // });
+    });
 
 
     it('should return true when invalid function called',()=>{

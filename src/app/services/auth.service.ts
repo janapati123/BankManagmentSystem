@@ -44,11 +44,11 @@ export class AuthService {
     localStorage.removeItem('ACCESS_TOKEN');
   }
   
-  public adduser(user1){
-    this.commonService.createUser(user1).subscribe((response)=>{
-      console.log("User Has been added");     
-    })
-  }
+  // public adduser(user1){
+  //   this.commonService.createUser(user1).subscribe((response)=>{
+  //     console.log("User Has been added");     
+  //   })
+  // }
 
   
 }

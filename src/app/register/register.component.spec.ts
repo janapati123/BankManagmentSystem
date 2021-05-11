@@ -56,6 +56,27 @@ describe('RegisterComponent', () => {
 
     expect(component.states.length).toBe(4);
   });
+  
+  it('should show status minor when age is under 18',()=>{
+    component.calculateAge("2020-11-16");
+    fixture.detectChanges();
+
+    expect(component.personalDetails.value.citizenStatus).toEqual("Minor");
+  });
+
+  it('should show status minor when age is between 18 and 60',()=>{
+    component.calculateAge("1998-11-16");
+    fixture.detectChanges();
+
+    expect(component.personalDetails.value.citizenStatus).toEqual("Normal");
+  });
+  
+  it('should show status minor when age is above 60',()=>{
+    component.calculateAge("1960-11-16");
+    fixture.detectChanges();
+
+    expect(component.personalDetails.value.citizenStatus).toEqual("Senior");
+  });
 
   it('should contain only numbers in contact',()=>{
       let control = component.personalDetails.get('contact');
